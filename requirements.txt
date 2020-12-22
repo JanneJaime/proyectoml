@@ -1,0 +1,11 @@
+flask == 1.1
+gensim == 3.8
+pyldavis == 2.1.2
+venv-run == 0.0.0
+gunicorn == 20.0
+virtualenv == 20.0.21
+requests == 2.20.1
+nltk == 3.5
+transformers == 4.1.1
+tensorflow == 2.2.0
+scipy == 1.4.1
