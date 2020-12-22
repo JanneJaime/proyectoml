@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>GPT2</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <img src="https://blog.bismart.com/hubfs/20190903-MachineLearning.jpg" alt="" style="float: left; margin-right: 10px; width: 35; height: 35px;">
+            <a class="navbar-brand" href="#">Proyecto</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/">Inicio  </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/gpt2">GPT2 <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-light py-2 mb-4">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-lg-12">
+                    <h1 class="display-4 text-dark mt-5 mb-2" style="text-align: center !important;">GPT2</h1>
+                    <p class="lead mb-5 text-dark-50" style="text-align: center !important;">Ingresa texto para que gpt2 genere el texto</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row" id="content-pubs">
+            <div id="textoreal" class="col">
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1" class="display-4 text-dark">Texto Real</label>
+                    <textarea class="form-control" id="textareareal" rows="10"></textarea>
+                </div>
+                <input type="button" id="boton" value="Generar" class="btn btn-primary" onclick="generar()">
+                <div id="cargando1" style="display:none; float: right;">
+                    <img src="{{ url_for('static',filename='imagenes/cargar.gif') }}" />
+                </div>
+            </div>
+
+            <div id="textogenerado" class="col">
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1" class="display-4 text-dark">Texto Generado</label>
+                    <textarea class="form-control" id="textareagenerado" rows="10" disabled></textarea>
+                </div>
+                <h6 id="result" style="display: none;"></h6>
+            </div>
+
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+
+    <!-- Footer -->
+    <footer class="py-3 bg-dark" style="margin-top: 15%;">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; 2020</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+
+</body>
+
+</html>

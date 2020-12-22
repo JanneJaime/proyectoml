@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Inicio</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <img src="https://blog.bismart.com/hubfs/20190903-MachineLearning.jpg" alt="" style="float: left; margin-right: 10px; width: 35; height: 35px;">
+            <a class="navbar-brand" href="#">Proyecto</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Inicio <span class="sr-only">(current)</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/gpt2">GPT2</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-light py-2 mb-4">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-lg-12">
+                    <h1 class="display-4 text-dark mt-5 mb-2" style="text-align: center !important;">Buscador</h1>
+                    <p class="lead mb-5 text-dark-50"></p>
+                    <br><br>
+                    <form class="search" method="GET" action="/">
+                        <div class="search__wrapper">
+                            <input type="text" name="src" id="src" placeholder="Search for..." class="search__field">
+                            <button type="button" class="fa fa-search search__icon"></button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row" id="content-pubs">
+            {% if resp %} {% for i in resp %}
+            <div class="col-12 box-shadow" style="margin-top: 15px;">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <img src="https://explorable.com/sites/default/files/images/APA-Title-Page-Example-1-2013.jpg" alt="" style="float: left; margin-right: 20px; width: 10%; height: 150px;">
+                        <h3 class="card-title">{{ i[0]}}</h3>
+                        <label> <strong>by</strong>
+                            {% for j in i[2] %}
+                                {{ j }}, 
+                            {% endfor %}
+                            <strong>Puntuacion:</strong> {{ i[4] }}
+                        </label>
+                        <p class="card-text" style="font-size: 8pt;text-align: justify;"> {{ i[1] }}</p>
+                        <label style="font-size: 8pt;">Keywords: {{ i[3] }} </label>
+                    </div>
+                    <div class="card-footer">
+                        <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick='similitud("{{ i[0] }}", "{{ i[1] }}", "{{ i[3] }}" )' value="Similares">
+                    </div>
+                </div>
+            </div>
+            {% endfor %} {% endif %}
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Model -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="max-width: 70%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Similares
+                        <h6>Top 5</h6>
+                    </h5>
+                    <div id="cargando" style="display:none; text-align: center; margin-left: 35%;">
+                        <img src="{{ url_for('static',filename='imagenes/cargar.gif') }}" />
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalbody">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Model-->
+
+    <!-- Footer -->
+    <footer class="py-3 bg-dark" style="margin-top: 15%;">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; 2020</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+
+</body>
+
+</html>
